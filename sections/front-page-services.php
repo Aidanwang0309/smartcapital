@@ -20,19 +20,18 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 <?php if ( $services_general_title != '' || $services_general_entry != '' || is_active_sidebar( 'front-page-services-sidebar' ) ) { ?>
 
 <section id="services" class="front-page-section">
-    <?php wd_slider(1); ?>
 	<?php if( $services_general_title || $services_general_entry ): ?>
 		<div class="section-header">
 			<div class="container">
 				<div class="row">
 					<?php if( $services_general_title ): ?>
 						<div class="col-sm-12">
-							<h3><?php echo illdy_sanitize_html( $services_general_title ); ?></h3>
+							<h3><?php echo do_shortcode(wp_kses_post( $services_general_title )); ?></h3>
 						</div><!--/.col-sm-12-->
 					<?php endif; ?>
 					<?php if( $services_general_entry ): ?>
 						<div class="col-sm-10 col-sm-offset-1">
-							<p><?php echo illdy_sanitize_html( $services_general_entry ); ?></p>
+							<div class="section-description"><?php echo do_shortcode(wp_kses_post( $services_general_entry )); ?></div>
 						</div><!--/.col-sm-10.col-sm-offset-1-->
 					<?php endif; ?>
 				</div><!--/.row-->
@@ -47,7 +46,7 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 					dynamic_sidebar( 'front-page-services-sidebar' );
 				elseif( current_user_can( 'edit_theme_options' ) & defined("ILLDY_COMPANION") ):
 					$the_widget_args = array(
-						'before_widget'	=> '<div class="col-sm-3 widget_illdy_service">',
+						'before_widget'	=> '<div class="col-sm-4 widget_illdy_service">',
 						'after_widget'	=> '</div>',
 						'before_title'	=> '',
 						'after_title'	=> ''
