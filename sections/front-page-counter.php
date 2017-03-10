@@ -21,10 +21,12 @@ if ( current_user_can( 'edit_theme_options' ) ) {
 ?>
 
 <?php
-if( $counter_background_type == 'image' && $counter_background_image ):
-	$counter_style = 'background-image: url('. esc_url( $counter_background_image ) .');background-color:' . $counter_background_color.';';
-else :
+if( $counter_background_type == 'image' ):
+	$counter_style = 'background-image: url('. esc_url( $counter_background_image ) .');';
+elseif( $counter_background_type == 'color' ):
 	$counter_style = 'background-color:' . $counter_background_color;
+else :
+	$counter_style = '';
 endif;
 ?>
 
